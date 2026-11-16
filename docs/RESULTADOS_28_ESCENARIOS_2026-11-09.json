@@ -1,6 +1,6 @@
 {
-  "timestamp_utc": "2026-11-09T06:27:03.607010+00:00",
-  "base": "SismoListo_AV2_Codigo_Simulaciones_Pendientes.zip",
+  "timestamp_utc": "2026-11-16T02:43:44.992790+00:00",
+  "base": "SismoListo public/ migrado, validación local",
   "executed": 28,
   "passed": 28,
   "failed": 0,
@@ -145,7 +145,7 @@
       "Escenario": 2,
       "Descripcion": "Identidad navegador",
       "Estado": "CUMPLE",
-      "Resultado": "Título y archivo favicon.svg presentes (despliegue público no comprobado)",
+      "Resultado": "Título y favicon.ico del challenge presentes (despliegue público no comprobado)",
       "Entorno": "Chromium en memoria 1440x880",
       "Captura": ""
     },

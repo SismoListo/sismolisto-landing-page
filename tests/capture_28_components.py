@@ -12,7 +12,7 @@ with sync_playwright() as pw:
  page.locator('#account-dialog').screenshot(path=str(OUT/'componente-registro.png'))
  page.locator('#account-close').click()
  page.locator('#step-select').select_option('2');page.locator('#step-view').click()
- im=(ROOT/'assets/images/screenshots/paso-simulacro-tb1.webp').read_bytes()
+ im=(ROOT/'public/assets/images/screenshots/paso-simulacro-tb1.webp').read_bytes()
  page.locator('#step-detail-image').evaluate('(img,data)=>{img.src=data}', 'data:image/webp;base64,'+base64.b64encode(im).decode())
  page.locator('#step-detail').screenshot(path=str(OUT/'componente-paso-con-referencia-tb1.png'))
  page.locator('#comparacion .comparison-table-wrap').screenshot(path=str(OUT/'componente-comparacion-desktop.png'))

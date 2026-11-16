@@ -1,10 +1,15 @@
-
 # Changelog — SismoListo Landing Page
 
 Registro de cambios del proyecto SismoListo.
 Se utilizan Semantic Versioning y Conventional Commits.
 
 ## [Unreleased] — Versión 0.2.0 en preparación
+
+### Changed (migración de estructura para Challenge WebStorm)
+- Único sitio en `public` con HTML, CSS, JavaScript y recursos gráficos organizados bajo `public/assets`.
+- Configuración de GitHub Actions para servir exclusivamente `public`, pendiente de habilitar en el repositorio.
+- Pruebas locales adaptadas a la estructura nueva; conservar las evidencias históricas como referencia.
+
 
 ### Added
 - Simulaciones académicas de registro e inicio de sesión.
