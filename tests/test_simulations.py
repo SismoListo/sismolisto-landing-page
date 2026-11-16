@@ -66,7 +66,7 @@ def download_desktop(page):
     page.locator('#download-open').click()
     assert page.locator('.download-desktop-qr img').is_visible()
     assert page.locator('.download-desktop-qr img').evaluate('(el)=>el.complete && el.naturalWidth>0')
-    assert (ROOT/'assets/images/illustrations/qr-sismolisto-demo.png').stat().st_size>200
+    assert (ROOT/'public/assets/images/illustrations/qr-sismolisto-demo.png').stat().st_size>200
     assert 'no descarga una aplicación' in page.locator('.download-desktop-qr').inner_text()
     page.screenshot(path=str(OUT/'hu030-desktop-qr.png'))
 

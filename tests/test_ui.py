@@ -4,16 +4,16 @@ import shutil
 from playwright.sync_api import sync_playwright
 
 ROOT=Path(__file__).resolve().parents[1]
-HTML=(ROOT/'index.html').read_text(encoding='utf-8')
+HTML=(ROOT/'public/index.html').read_text(encoding='utf-8')
 # Playwright in-memory harness cannot fetch external Google Fonts; omit ONLY remote font stylesheet during tests.
 import re as _re
 HTML=_re.sub(r'<link href="https://fonts\.googleapis\.com/[^>]+>','',HTML)
-CSS='\n'.join((ROOT/rel).read_text(encoding='utf-8') for rel in __import__('re').findall(r'href=\"(css/[^\"]+\.css)\"', HTML))
-JS=(ROOT/'js/app.js').read_text(encoding='utf-8')+'\n'+(ROOT/'js/acceptance.js').read_text(encoding='utf-8')
+CSS='\n'.join((ROOT/'public/assets/styles'/p).read_text(encoding='utf-8') for p in __import__('re').findall(r'@import url\(\"\./([^\"]+\.css)\"\)', (ROOT/'public/assets/styles/styles.css').read_text(encoding='utf-8')))
+JS=(ROOT/'public/assets/scripts/app.js').read_text(encoding='utf-8')+'\n'+(ROOT/'public/assets/scripts/acceptance.js').read_text(encoding='utf-8')
 import base64
-logo=ROOT/'assets/images/brand/logo-sismolisto-captura-tb1.png'
+logo=ROOT/'public/assets/images/brand/logo-sismolisto-captura-tb1.png'
 HTML=HTML.replace('assets/images/brand/logo-sismolisto-captura-tb1.png', 'data:image/png;base64,'+base64.b64encode(logo.read_bytes()).decode())
-qr=ROOT/'assets/images/illustrations/qr-sismolisto-demo.png'
+qr=ROOT/'public/assets/images/illustrations/qr-sismolisto-demo.png'
 HTML=HTML.replace('assets/images/illustrations/qr-sismolisto-demo.png','data:image/png;base64,'+base64.b64encode(qr.read_bytes()).decode())
 
 def mount(page):
