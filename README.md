@@ -1,77 +1,78 @@
-# SismoListo — Landing Page, corrección AV2
+# SismoListo — Landing Page (Challenge WebStorm / AV2)
 
-Implementación académica de SismoListo en HTML5, CSS3 y JavaScript básico. Se conserva la organización CSS modular, los recursos y la referencia a la guía del capítulo IV del informe TB1.
+Landing Page responsive del proyecto académico **SismoListo**, desarrollado en el curso IHC y Tecnologías Móviles de la UPC (2026-2). Su finalidad es representar actividades de preparación situacional ante sismos para **estudiantes universitarios** y **trabajadores de oficina**. Los escenarios, mapas y rutas son ficticios y **no son instrucciones validadas para una emergencia real**.
 
-## Probar localmente
+## Autores del equipo
 
-```bash
-python -m http.server 8000
-```
-Abre `http://localhost:8000` en un navegador. Para pruebas automatizadas se requiere `pip install -r requirements-dev.txt` y `python -m playwright install chromium`. En el entorno de ejecución de este paquete, las pruebas se han realizado con montaje en memoria debido a restricciones de navegación local; no equivalen a pruebas de despliegue.
+- Aguilar Aguayo, Jeferson Renzo
+- Alminagorda Capcha, Gian Franco
+- Espinoza Ricaldi, Ángel
+- Homola, Tomás
+- Jimenez Abarca, Cristian John
+- Vallejos Salazar, Dusting Jhair
 
-## Documentación
+## Funcionalidades académicas
 
-- `docs/ALCANCE_FUNCIONAL_Y_BRECHAS.md`: qué está corregido y qué sigue sin demostrarse.
-- `docs/MATRIZ_50_HU_AV2.csv`: clasificación y resultados por HU.
-- `docs/MATRIZ_100_ESCENARIOS_AV2.csv`: 100 criterios originales y evidencia diferenciada.
-- `docs/INSTRUCCIONES_VSCODE_GITHUB.md`: integración sin sobrescribir el historial.
+Navegación y CTA, explicación del producto, elección de espacio, evaluación guiada, registro de riesgos, mapa simulado, micro-simulacros, checklist, progreso, formularios y estados de retroalimentación. Se utilizan **HTML5, CSS3 y JavaScript** sin CSS frameworks, con módulos independientes y estados de demostración en navegador.
 
-**Advertencia**: mapas, zonas, rutas y tiempos del sitio son ejemplos de entrenamiento NO validados para emergencias reales. No existe backend, autentificación ni sincronización remota.
+## Estructura principal
 
-
-## Revisión de fidelidad visual (8 de noviembre de 2026)
-
-Se ajustaron exclusivamente la cabecera, la legibilidad de la navegación y botones,
-la representación de marca y la lectura del pie de página, conforme al capítulo IV.
-La captura original del logotipo (70 × 22 px, fondo opaco) se **conserva** en
-`assets/images/brand/logo-sismolisto-captura-tb1.png`. Para evitar una imagen ampliada
-pixelada, la web presenta temporalmente un símbolo circular y el nombre de marca
-reproducidos con CSS y texto editable. No se afirma equivalencia exacta con el logo vectorial
-original: debe reemplazarse cuando el equipo aporte el recurso de alta resolución.
-
-El código actualizado se entrega **sin publicar**; la URL de GitHub Pages mantiene
-la versión anterior hasta que se integre, revise y despliegue una nueva versión.
-Revisa `docs/AUDITORIA_VISUAL_2026-11-08.md` y `docs/INSTRUCCIONES_GITHUB_REVISION.md`.
-
-
-## Actualización auditada — 8 de noviembre de 2026
-
-Esta copia incorpora correcciones locales vinculadas con HU-032, HU-039, HU-041, HU-042, HU-044, HU-045 y HU-048, sin modificar las historias originales ni agregar un servicio backend. Los mapas son ficticios. No se ha subido esta revisión a GitHub Pages.
-
-La versión base procede del ZIP `SismoListo_LandingPage_CapIV_Codigo_Auditado.zip`; **no es idéntica a `develop`**. Al cotejar los blobs Git, `index.html` y `css/components/header.css` ya eran distintos de sus equivalentes de la rama remota, mientras que `js/app.js` sí coincidía antes de las correcciones de esta iteración. Por tanto, se requiere inspeccionar los cambios antes de integrarlos.
-
-### Pruebas locales
-
-```sh
-python -m pip install -r requirements-dev.txt
-python -m playwright install chromium
-python tests/test_ui.py
-python tests/test_alternatives.py
-python tests/test_acceptance_av2.py
-python tests/test_core_extension.py
-python tests/test_acceptance_extended.py
-python tests/test_visual_semantic.py
+```text
+public/
+  index.html
+  favicon.ico
+  assets/
+    styles/styles.css   # Entrada a los 20 módulos CSS
+    scripts/main.js     # Entrada a app.js y acceptance.js
+    images/
+    fonts/
+    icons/
+docs/                   # Auditorías y evidencias académicas
+.github/workflows/      # Configuración futura de GitHub Pages para public/
+tests/                  # Comprobaciones locales (ver nota de alcance)
+README.md
+CHANGELOG.md
+VERSION.md
+CONTRIBUTING.md
+requirements-dev.txt
 ```
 
-**Limitación:** estas suites montan HTML/CSS/JavaScript en memoria; no equivalen a una prueba del sitio desplegado ni a una certificación de las 30 HU core. Consulta `docs/RESULTADOS_AUDITORIA_50_HU.json` y el Excel anexo.
+**No existe un `index.html` paralelo en la raíz**: el único punto de entrada de la web es `public/index.html`.
 
-## Simulaciones de criterios de aceptación (8 de noviembre de 2026)
+## Ejecutar localmente desde WebStorm o VS Code
 
-Con la aclaración académica de que se permiten flujos demostrativos en JavaScript, esta versión incorpora:
+Desde la raíz del repositorio:
 
-- **HU-021:** enviar una consulta de manera **simulada**, limpiar campos y mostrar confirmación sin afirmar que exista servicio de correo ni respuesta garantizada.
-- **HU-030:** opciones ilustrativas de Google Play y App Store en móvil y QR a la propia página web en escritorio. No hay descarga real ni app publicada.
-- **HU-034:** cálculo de la ruta mínima de un grafo ficticio y alternativa ante un bloqueo crítico. No son rutas de evacuación reales.
-- **HU-039:** registrar una actividad sin conexión y procesar una cola de sincronización **solo local y simulada** al reconectar. No se envían datos a un servidor.
-- **HU-041:** configuración inicial simulada de perfil y espacio habitual.
-
-Para probar estas funcionalidades:
-
-```bash
-python tests/test_pending_scenarios.py
-python tests/test_simulations.py
+```powershell
+py -m http.server 8000 --directory public
 ```
 
-Las matrices actualizadas están en `docs/MATRIZ_100_ESCENARIOS_SIMULACIONES_2026-11-08.csv` y `docs/MATRIZ_50_HU_ESTADO_SIMULACIONES_2026-11-08.csv`.
+Abrir `http://localhost:8000/`. La mayoría de las funciones de demostración se mantienen en el navegador; no requiere servidor de autenticación, correo electrónico ni GPS real.
 
-**Resultado local orientativo**: 72 escenarios con evidencia local satisfactoria; 28 no comprobados; 32 HU con sus dos escenarios clasificados como cumplidos localmente. **No acredita las 30 HU core** por no haberse aprobado aún su selección desde el backlog. No equivale a una publicación en GitHub Pages ni a una auditoría WCAG completa.
+Para pruebas estructurales y humo local:
+
+```powershell
+py tests/test_structure.py
+py -m pip install -r requirements-dev.txt
+py -m playwright install chromium
+py tests/test_ui.py
+```
+
+## GitFlow y publicación
+
+Repositorio del equipo: https://github.com/SismoListo/sismolisto-landing-page
+
+Trabajar en una rama `feature/*` nacida de `develop` y enviar Pull Request a `develop`. **No sustituir el contenido de la rama `main` ni modificar la configuración de GitHub Pages hasta verificar el cambio de despliegue**.
+
+La carpeta `public` se publica mediante el workflow `.github/workflows/deploy-pages.yml`, una vez seleccionado **Settings → Pages → Source: GitHub Actions** y aprobada la integración a `main`. Si GitHub Pages continúa en `Deploy from a branch: main /(root)`, no publicará correctamente esta nueva estructura.
+
+Repositorio separado para Gherkin: https://github.com/JeferSomBlan/sismolisto-acceptance-tests
+
+## Documentación y advertencias
+
+- `docs/MIGRACION_WEBSTORM_PUBLIC.md`: trazabilidad de archivos movidos, validación y despliegue.
+- `docs/README_AV2_ORIGINAL_ANTES_MIGRACION.md`: README anterior conservado por trazabilidad.
+- `CHANGELOG.md` y `VERSION.md`: historial y versión en preparación.
+- `CONTRIBUTING.md`: convenciones de ramas y commits.
+- Los reportes de pruebas dentro de `docs/test-logs` son **históricos**, no acreditan automáticamente la ejecución de esta migración.
+- Algunos criterios HU están representados parcialmente; no presentar las simulaciones como servicios reales ni rutas institucionales validadas.

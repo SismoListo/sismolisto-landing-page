@@ -9,3 +9,8 @@ __pycache__/
 *.pyc
 .playwright/
 .DS_Store
+
+# IDE output and local challenge checks
+.idea/
+__pycache__/
+evidence/

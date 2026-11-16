@@ -57,7 +57,7 @@ with sync_playwright() as w:
     pg.locator('#step-select').select_option('2');pg.locator('#step-view').click()
     check(pg.locator('#step-detail').is_visible(),'Detalle oculto')
     check('Practica' in pg.locator('#step-detail-title').inner_text(),'Título de paso incorrecto')
-    rel=pg.locator('#step-detail-image').get_attribute('src'); check((ROOT/rel).is_file(),'Imagen referencial no existe')
+    rel=pg.locator('#step-detail-image').get_attribute('src'); check((ROOT/'public'/rel).is_file(),'Imagen referencial no existe')
     return 'Descripción de paso e imagen de mockup TB1 p. 106 visibles'
  case(b,'HU-003',2,'Detalle de un paso',step_detail,visual=True)
  def registration_valid(pg):
@@ -169,9 +169,9 @@ with sync_playwright() as w:
  case(b,'HU-018',2,'Usuario con cuenta',cta_login)
  def browser_identity(pg):
     check(pg.title().startswith('SismoListo'),'Título de pestaña incorrecto')
-    favicon=pg.locator('link[rel="icon"]').get_attribute('href')
-    check(bool(favicon) and (ROOT/favicon).is_file(),'Favicon no está disponible en recursos')
-    return 'Título y archivo favicon.svg presentes (despliegue público no comprobado)'
+    favicon=pg.locator('link[rel="icon"]').first.get_attribute('href')
+    check(bool(favicon) and (ROOT/'public'/favicon).is_file(),'Favicon no está disponible en recursos')
+    return 'Título y favicon.ico del challenge presentes (despliegue público no comprobado)'
  case(b,'HU-019',2,'Identidad navegador',browser_identity)
  def footer(pg):
     t=pg.locator('.site-footer').inner_text().lower()
@@ -276,7 +276,7 @@ with sync_playwright() as w:
  case(b,'HU-036',2,'Tiempo agotado',timeout,visual=True)
  b.close()
 
-summary={'timestamp_utc':datetime.now(timezone.utc).isoformat(),'base':'SismoListo_AV2_Codigo_Simulaciones_Pendientes.zip','executed':len(RESULT),'passed':sum(r['Estado']=='CUMPLE' for r in RESULT),'failed':sum(r['Estado']!='CUMPLE' for r in RESULT),'results':RESULT}
+summary={'timestamp_utc':datetime.now(timezone.utc).isoformat(),'base':'SismoListo public/ migrado, validación local','executed':len(RESULT),'passed':sum(r['Estado']=='CUMPLE' for r in RESULT),'failed':sum(r['Estado']!='CUMPLE' for r in RESULT),'results':RESULT}
 out=ROOT/'docs/RESULTADOS_28_ESCENARIOS_2026-11-09.json'
 out.write_text(json.dumps(summary,ensure_ascii=False,indent=2),encoding='utf-8')
 print('SUMMARY',summary['passed'],summary['failed'],out,flush=True)

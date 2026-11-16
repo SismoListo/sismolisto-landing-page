@@ -13,4 +13,3 @@ Contraste calculado Texto principal / blanco: 16.10:1 >= 4.5:1
 Contraste calculado Texto secundario / blanco: 6.34:1 >= 4.5:1
 RESULTADOS: 13 comprobaciones satisfactorias.
 LIMITACIÓN: navegador aislado con fuentes web externas omitidas; no es prueba de sitio desplegado ni auditoría WCAG completa.
-
